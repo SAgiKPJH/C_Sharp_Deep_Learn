@@ -17,3 +17,8 @@ C#을 깊게 배웁니다.
 
 <br>
 
+# WPF Xaml
+- WPF XAML에서 mc:Ignorable="d"의 의미 https://github.com/SagiK-Repository/C_Sharp_Deep_Learn/issues/9
+- WPF에서 design width vs width의 차이는? https://github.com/SagiK-Repository/C_Sharp_Deep_Learn/issues/8
+
+
