@@ -9,7 +9,7 @@ namespace Rx_Demo;
 
 public class EvenNumberSubject : IDisposable
 {
-    private readonly BehaviorSubject<int> subject = new(0);
+    private readonly AsyncSubject<int> subject = new();
     private readonly List<IDisposable> disposables = new();
 
     public void Dispose()
@@ -24,7 +24,12 @@ public class EvenNumberSubject : IDisposable
         Enumerable.Range(1, 100)
             .Where(x => x % 2 == 0)
             .ToList()
-            .ForEach(x => subject.OnNext(x));
+            .ForEach(x =>
+        {
+            subject.OnNext(x);
+            if (x == 100)
+                subject.OnCompleted();
+        });
     }
 
     public void Subscribe(Action<int> action)
