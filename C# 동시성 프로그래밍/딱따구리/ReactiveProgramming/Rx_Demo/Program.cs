@@ -5,8 +5,8 @@
 //evenNumber.Subscribe(consoleObserver);
 
 var evenNumber = new EvenNumberSubject();
-evenNumber.Subscribe(Console.WriteLine);
 evenNumber.Run();
+evenNumber.Subscribe(Console.WriteLine);
 
 Console.WriteLine("Completed!");
 Console.ReadLine();
