@@ -9,7 +9,7 @@ namespace Rx_Demo;
 
 public class EvenNumberSubject : IDisposable
 {
-    private readonly ReplaySubject<int> subject = new();
+    private readonly BehaviorSubject<int> subject = new(0);
     private readonly List<IDisposable> disposables = new();
 
     public void Dispose()
