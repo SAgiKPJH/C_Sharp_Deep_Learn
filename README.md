@@ -6,6 +6,7 @@ C#을 깊게 배웁니다.
 ### 목표
 
 - [C# 동시성 프로그래밍](https://github.com/SagiK-Repository/C_Sharp_Deep_Learn/blob/main/C%23AsyncProgramming.md)
+- [x] Reactive Extensions https://github.com/SagiK-Repository/C_Sharp_Deep_Learn/issues/12
 
 
 ### 제작자
