@@ -1,2 +1,8 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using Rx_Demo;
+
+var evenNumber = new EvneNumberObservable();
+var consoleObserver = new ConsoleLogObserver();
+evenNumber.Subscribe(consoleObserver);
+
+Console.WriteLine("Completed!");
+Console.ReadLine();
