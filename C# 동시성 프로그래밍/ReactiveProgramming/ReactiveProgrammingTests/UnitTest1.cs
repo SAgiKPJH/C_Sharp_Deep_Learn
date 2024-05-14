@@ -8,12 +8,16 @@ namespace ReactiveProgrammingTests
         {
             public async Task<bool> ReturnFalse()
             {
-                await Task.CompletedTask;
+                var beforeThreadID = AppDomain.GetCurrentThreadId();
+                await Task.Delay(10).ConfigureAwait(false);
+                var afterThreadID = AppDomain.GetCurrentThreadId();
                 return false;
             }
             public async Task<bool> ReturnFalseForce()
             {
+                var beforeThreadID = AppDomain.GetCurrentThreadId();
                 await Task.Yield(); // 이 코드 이후 다른 스레드에서 작업
+                var afterThreadID = AppDomain.GetCurrentThreadId();
                 return false;
             }
 
@@ -27,11 +31,13 @@ namespace ReactiveProgrammingTests
         [Fact(DisplayName = "async Method Test")]
         public async Task MethodTest()
         {
+            var beforeThreadID = AppDomain.GetCurrentThreadId();
             var testClass = new TestClass();
-            bool result = await testClass.ReturnFalse();
-            bool result1 = await testClass.ReturnFalseForce();
+            bool result = await testClass.ReturnFalse().ConfigureAwait(true);
+            bool result1 = await testClass.ReturnFalseForce().ConfigureAwait(true);
             Assert.False(result);
             Assert.False(result1);
+            var afterThreadID = AppDomain.GetCurrentThreadId();
         }
 
         [Fact(DisplayName = "AsyncContext Method Test")]
