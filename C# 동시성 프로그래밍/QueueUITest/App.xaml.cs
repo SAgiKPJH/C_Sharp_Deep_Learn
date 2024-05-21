@@ -19,9 +19,9 @@ namespace QueueUITest
         {
             services.AddSingleton<SubViewModel>();
             services.AddSingleton<MainViewModel>();
-            // services.AddSingleton<IQueue, AsyncProducerConsumerQueueService>();
+            services.AddSingleton<IQueue, AsyncProducerConsumerQueueService>();
             // services.AddSingleton<IQueue, AsyncCollectionService>();
-            services.AddSingleton<IQueue, BufferBlockService>();
+            // services.AddSingleton<IQueue, BufferBlockService>();
         }).Build();
 
         static App()
