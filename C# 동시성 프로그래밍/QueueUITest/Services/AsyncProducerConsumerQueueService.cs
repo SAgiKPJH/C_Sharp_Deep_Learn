@@ -1,5 +1,4 @@
-﻿using DevExpress.Mvvm.UI;
-using Nito.AsyncEx;
+﻿using Nito.AsyncEx;
 using System;
 
 namespace QueueUITest.Services

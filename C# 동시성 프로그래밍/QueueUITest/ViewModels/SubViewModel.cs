@@ -1,5 +1,4 @@
-﻿using DevExpress.Mvvm;
-using DevExpress.Mvvm.CodeGenerators;
+﻿using DevExpress.Mvvm.CodeGenerators;
 using QueueUITest.Services;
 using System.Collections.ObjectModel;
 

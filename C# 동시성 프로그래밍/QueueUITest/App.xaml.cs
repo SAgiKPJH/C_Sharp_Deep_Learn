@@ -1,11 +1,10 @@
 ﻿using DevExpress.Xpf.Core;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Windows;
+using Microsoft.Extensions.Hosting;
 using QueueUITest.Services;
-using System;
 using QueueUITest.ViewModels;
+using System;
+using System.Windows;
 
 namespace QueueUITest
 {
