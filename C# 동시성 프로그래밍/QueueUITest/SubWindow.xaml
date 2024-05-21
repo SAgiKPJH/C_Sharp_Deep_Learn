@@ -6,8 +6,8 @@
     xmlns:local="clr-namespace:QueueUITest"
     xmlns:Views="clr-namespace:QueueUITest.Views"
     Title="SubWindow"
-    Height="800"
-    Width="1000">
+    Height="500"
+    Width="500">
     <Grid>
         <Views:SubView />
     </Grid>

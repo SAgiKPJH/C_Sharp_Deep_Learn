@@ -5,7 +5,7 @@ namespace QueueUITest.Services
 {
     public class AsyncProducerConsumerQueueService : IQueue
     {
-        public AsyncProducerConsumerQueue<string> Message = new AsyncProducerConsumerQueue<string>();
+        private AsyncProducerConsumerQueue<string> _message = new AsyncProducerConsumerQueue<string>();
         public EventHandler<string> MessageEvent { get; set; }
 
         public AsyncProducerConsumerQueueService()
@@ -15,7 +15,7 @@ namespace QueueUITest.Services
 
         public async void Send(string message)
         {
-            await Message.EnqueueAsync(message);
+            await _message.EnqueueAsync(message);
         }
 
         public async void Receive()
@@ -25,7 +25,7 @@ namespace QueueUITest.Services
                 string item;
                 try
                 {
-                    item = await Message.DequeueAsync();
+                    item = await _message.DequeueAsync();
                 }
                 catch (InvalidOperationException)
                 {
