@@ -10,7 +10,13 @@
     mc:Ignorable="d"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    DataContext="{Services:DependencySource Type={x:Type ViewModels:SubViewModel}}">
+    DataContext="{Services:DependencySource Type={x:Type ViewModels:SubViewModel}}"
+    d:DataContext="{d:DesignInstance {x:Type ViewModels:SubViewModel}}">
+    <dxmvvm:Interaction.Behaviors>
+        <dxmvvm:EventToCommand
+            EventName="MouseDown"
+            Command="{Binding MouseDownCommand}" />
+    </dxmvvm:Interaction.Behaviors>
     <StackPanel>
         <Label
             Content="{Binding Text}" />
@@ -23,5 +29,13 @@
         <Button
             Content="Excute"
             Command="{Binding ExcuteCommand}" />
+        <Button
+            Content="Cancel"
+            Command="{Binding CancelCommand}" />
+        <ListBox
+            ItemsSource="{Binding ListSource}"
+            Width="500"
+            Height="400"
+            FontSize="16" />
     </StackPanel>
 </UserControl>

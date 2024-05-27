@@ -1,5 +1,6 @@
 ﻿using Nito.AsyncEx;
 using System;
+using System.Threading;
 
 namespace QueueUITest.Services
 {
@@ -7,10 +8,11 @@ namespace QueueUITest.Services
     {
         private AsyncProducerConsumerQueue<string> _message = new AsyncProducerConsumerQueue<string>();
         public EventHandler<string> MessageEvent { get; set; }
+        public CancellationTokenSource CancellationTokenSource { get; set; } = new CancellationTokenSource();
 
         public AsyncProducerConsumerQueueService()
         {
-            Receive();
+            Receive(CancellationTokenSource.Token);
         }
 
         public async void Send(string message)
@@ -18,14 +20,19 @@ namespace QueueUITest.Services
             await _message.EnqueueAsync(message);
         }
 
-        public async void Receive()
+        public async void Receive(CancellationToken cancellationToken)
         {
             while (true)
             {
                 string item;
                 try
                 {
-                    item = await _message.DequeueAsync();
+                    item = await _message.DequeueAsync(cancellationToken);
+                }
+                catch (OperationCanceledException)
+                {
+                    MessageEvent?.Invoke(this, "Cancel");
+                    break;
                 }
                 catch (InvalidOperationException)
                 {
