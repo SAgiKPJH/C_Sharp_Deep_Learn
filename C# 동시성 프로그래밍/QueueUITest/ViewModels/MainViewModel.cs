@@ -1,4 +1,5 @@
 ﻿using DevExpress.Mvvm.CodeGenerators;
+using DevExpress.XtraPrinting.Preview;
 using QueueUITest.Services;
 using ReactiveUI;
 using System;
@@ -38,15 +39,24 @@ namespace QueueUITest.ViewModels
                 data.Add(receive);
             };
 
+            // CancellationToken 미 지원 Handeling -> Throw
             MouseDownCommand = ReactiveCommand.Create<MouseButtonEventArgs, Unit>(e =>
             {
-                listSource.Add($"Mouse Down!!!!!");
+                try
+                {
+                    _cancellationTokenSource.Token.ThrowIfCancellationRequested();
+                    listSource.Add($"Mouse Down!!!!!");
+                }
+                catch (OperationCanceledException)
+                {
+                    listSource.Add($"Canceled");
+                }
                 return Unit.Default;
             });
 
             SynchronizationContext uiContext = SynchronizationContext.Current;
 
-            var untilObservable = Observable.Timer(TimeSpan.FromSeconds(15)).Take(1);
+            var untilObservable = Observable.Timer(TimeSpan.FromSeconds(20)).Take(1);
 
             MouseDownCommand
                 .Buffer(MouseDownCommand.Throttle(TimeSpan.FromMilliseconds(200)))
@@ -60,7 +70,11 @@ namespace QueueUITest.ViewModels
                 },
                 onCompleted: () =>
                 {
-                    listSource.Add($"Cancel");
+                    App.Current.Dispatcher.Invoke(() =>
+                    {
+                        // Observable을 활용한 Cancel 동작
+                        listSource.Add($"Been 15 Seconed");
+                    });
                     _cancellationTokenSource.Cancel();
                 }, _cancellationTokenSource.Token);
         }

@@ -1,5 +1,7 @@
 ﻿using DevExpress.Mvvm.CodeGenerators;
 using DevExpress.Mvvm.Native;
+using DevExpress.XtraPrinting.Preview;
+using Microsoft.Extensions.Logging;
 using QueueUITest.Services;
 using ReactiveUI;
 using System;
@@ -16,7 +18,8 @@ namespace QueueUITest.ViewModels
     public partial class SubViewModel
     {
         private IQueue _queueService;
-        private CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
+        // CancellationToken을 활용한 15초 뒤 종료 동작
+        private CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(15));
 
         [GenerateProperty]
         ObservableCollection<string> data = ["a", "b"];
@@ -37,31 +40,37 @@ namespace QueueUITest.ViewModels
                 data.Add(receive);
             };
 
+            // CancellationToken 미 지원 Handeling -> IsCancellationRequested
             MouseDownCommand = ReactiveCommand.Create<MouseButtonEventArgs, Unit>(e =>
             {
-                listSource.Add($"Mouse Down!!!!!");
+                if (_cancellationTokenSource.Token.IsCancellationRequested)
+                    listSource.Add($"Canceled");
+                else
+                    listSource.Add($"Mouse Down!!!!!");
+                
                 return Unit.Default;
             });
 
             SynchronizationContext uiContext = SynchronizationContext.Current;
 
-            var untilObservable = Observable.Timer(TimeSpan.FromSeconds(15)).Take(1);
-
             MouseDownCommand
                 .Buffer(MouseDownCommand.Throttle(TimeSpan.FromMilliseconds(1000)))
                 .Where(x => x.Count >= 2)
-                .TakeUntil(untilObservable)
                 .ObserveOn(uiContext)
                 .Subscribe(position =>
                 {
                     string output = position.Count >= 3 ? "Triple" : "Double";
                     listSource.Add($"Mouse {output} Click!!!!!");
-                },
-                onCompleted: () =>
+                },_cancellationTokenSource.Token);
+
+            // CancellationToken Register 기능
+            _cancellationTokenSource.Token.Register(() =>
+            {
+                App.Current.Dispatcher.Invoke(() =>
                 {
-                    listSource.Add($"Cancel");
-                    _cancellationTokenSource.Cancel();
-                }, _cancellationTokenSource.Token);
+                    listSource.Add($"Regist Cancel Action Works");
+                });
+            });
         }
 
         [GenerateCommand]
