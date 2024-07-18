@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet>
+    <Header>
+      <Title>MediatR Request, Response, Handler</Title>
+      <Shortcut>mediatrrequest</Shortcut>
+      <Description>Creates a MediatR query and handler for updating dataset running status.</Description>
+      <Author>SagiKPJH</Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>QueryName</ID>
+          <ToolTip>Name of the query</ToolTip>
+          <Default>TestQuery</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+        <![CDATA[
+public record $QueryName$Request() : IRequest<Option<$QueryName$Response>>;
+public record $QueryName$Response();
+public class $QueryName$Handler : IRequestHandler<$QueryName$Request, Option<$QueryName$Response>>
+{
+    private readonly ITranslator _translator;
+    private readonly IToastNotification _notificationService;
+    
+    public $QueryName$Handler(
+        ITranslator translator,
+        IToastNotification notificationService)
+    {
+        _translator = translator;
+        _notificationService = notificationService;
+    }
+
+    public async Task<Option<$QueryName$Response>> Handle($QueryName$Request request, CancellationToken cancellationToken)
+    {
+        await Task.CompletedTask;
+        throw new NotImplementedException();
+    }
+}
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

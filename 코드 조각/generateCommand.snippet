@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet>
+    <Header>
+      <Title>Generate Command Method</Title>
+      <Shortcut>generatecommand</Shortcut>
+      <Description>Creates a GenerateCommand Method</Description>
+      <Author>SagiKPJH</Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>MethodName</ID>
+          <ToolTip>Name of the method</ToolTip>
+          <Default>TestMethod</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+        <![CDATA[
+[GenerateCommand(AllowMultipleExecution = true)]
+private async Task $MethodName$()
+{
+    await Task.CompletedTask;
+}
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
