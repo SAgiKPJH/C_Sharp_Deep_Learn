@@ -55,7 +55,7 @@ foreach (var resourceFile in resourceFiles4)
 }
 
 
-Console.WriteLine("\n\n------이중패치--------\n");
+Console.WriteLine("\n\n------이중 패치 따라해본 내용--------\n");
 
 var resourceFiles5 = new List<Visitor_Pattern.이중패치.ResourceFile>()
 {
