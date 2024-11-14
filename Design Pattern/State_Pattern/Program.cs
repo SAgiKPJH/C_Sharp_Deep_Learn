@@ -10,6 +10,8 @@ Console.WriteLine("\n\n------테이블 조회--------\n");
 
 var mario2 = new State_Pattern.테이블_조회.MarioStateMachine();
 Console.WriteLine($"Socre : {mario2.Score}, State : {mario2.CurrentState}");
+mario2.ObtainMushroom();
+Console.WriteLine($"Socre : {mario2.Score}, State : {mario2.CurrentState}");
 mario2.ObtainCape();
 Console.WriteLine($"Socre : {mario2.Score}, State : {mario2.CurrentState}");
 mario2.ObtainFire();

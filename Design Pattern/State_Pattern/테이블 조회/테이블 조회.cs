@@ -54,7 +54,7 @@ public class MarioStateMachine
         Score += actionTable[(int)state, (int)evt];
     }
 
-    public void ObtainMushRoom() => ExecuteEvent(Event.OBTAIN_MUSHROOM);
+    public void ObtainMushroom() => ExecuteEvent(Event.OBTAIN_MUSHROOM);
     public void ObtainCape() => ExecuteEvent(Event.OBTAIN_CAPE);
     public void ObtainFire() => ExecuteEvent(Event.OBTAIN_FIRE);
     public void MeetMonster() => ExecuteEvent(Event.MEET_MONSTER);
