@@ -7,14 +7,17 @@ class Program
     {
         Console.WriteLine("\n\n------Flux--------\n");
 
-        Flux_Pattern.Normal_Flux.MarioStore.Instance.ScoreChanged += PrintMarioState_Flux;
+        var marioStore = new Flux_Pattern.Normal_Flux.MarioStore(0, Flux_Pattern.Normal_Flux.State.SMALL);
+        marioStore.ScoreChanged += PrintMarioState_Flux;
         var flux_dispacher = new Flux_Pattern.Normal_Flux.Dispatcher();
         flux_dispacher.Dispatch += action => action();
-        PrintMarioState_Flux(Flux_Pattern.Normal_Flux.MarioStore.Instance);
-        Flux_Pattern.Normal_Flux.MarioActionCreator.Action(new Flux_Pattern.Normal_Flux.ObtainMushroomAction());
-        Flux_Pattern.Normal_Flux.MarioActionCreator.Action(new Flux_Pattern.Normal_Flux.ObtainCapeAction());
-        Flux_Pattern.Normal_Flux.MarioActionCreator.Action(new Flux_Pattern.Normal_Flux.ObtainFireAction());
-        Flux_Pattern.Normal_Flux.MarioActionCreator.Action(new Flux_Pattern.Normal_Flux.MeetMonsterAction());
+
+        PrintMarioState_Flux(marioStore);
+        var actionCreator = new Flux_Pattern.Normal_Flux.MarioActionCreator(flux_dispacher, marioStore);
+        actionCreator.Action(new Flux_Pattern.Normal_Flux.ObtainMushroomAction());
+        actionCreator.Action(new Flux_Pattern.Normal_Flux.ObtainCapeAction());
+        actionCreator.Action(new Flux_Pattern.Normal_Flux.ObtainFireAction());
+        actionCreator.Action(new Flux_Pattern.Normal_Flux.MeetMonsterAction());
 
 
         Console.WriteLine("\n\n------Fluxor--------\n");

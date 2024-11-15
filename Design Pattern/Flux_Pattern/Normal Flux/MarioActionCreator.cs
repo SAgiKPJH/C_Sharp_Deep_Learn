@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Flux_Pattern.Normal_Flux;
+﻿namespace Flux_Pattern.Normal_Flux;
 
 public class MarioActionCreator
 {
@@ -20,25 +18,24 @@ public class MarioActionCreator
         {   +0 ,  +0,    0, -300 }
     };
 
+    private readonly MarioStore _store;
+    private readonly Dispatcher _dispacher;
+
+    public MarioActionCreator(Dispatcher dispatcher, MarioStore store)
+    {
+        _dispacher = dispatcher;
+        _store = store;
+    }
+
     public void Action(IMarioAction marioAction)
     {
-        MarioDispatcher.Invoke(() =>
+        _dispacher.Invoke(() =>
         {
-            int score = MarioStore.Instance.Score + 100;
-            MarioStore.Instance.SetMarioState(new MarioStore(
-                score: MarioStore.Instance.Score + _actionTable[(int)MarioStore.Instance.CurrentState, marioAction.GetTableIndex()],
-                state: _transitionTable[(int)MarioStore.Instance.CurrentState, marioAction.GetTableIndex()]
+            int score = _store.Score + 100;
+            _store.SetMarioState(new MarioStore(
+                score: _store.Score + _actionTable[(int)_store.CurrentState, marioAction.GetTableIndex()],
+                state: _transitionTable[(int)_store.CurrentState, marioAction.GetTableIndex()]
             ));
         });
     }
 }
-
-public interface IMarioAction
-{
-    int GetTableIndex();
-}
-
-public record ObtainMushroomAction : IMarioAction { public int GetTableIndex() => 0; }
-public record ObtainCapeAction : IMarioAction { public int GetTableIndex() => 1; }
-public record ObtainFireAction : IMarioAction { public int GetTableIndex() => 2; }
-public record MeetMonsterAction : IMarioAction { public int GetTableIndex() => 3; }
