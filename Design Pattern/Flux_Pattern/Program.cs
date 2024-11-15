@@ -53,8 +53,6 @@ class Program
         Console.WriteLine($"Socre : {marioSate!.Value.Score}, State : {marioSate.Value.CurrentState}");
     }
 
-    private static void PrintMarioState_Flux(Flux_Pattern.Normal_Flux.MarioStore marioStore)
-    {
+    private static void PrintMarioState_Flux(Flux_Pattern.Normal_Flux.MarioStore marioStore) =>
         Console.WriteLine($"Socre : {marioStore.Score}, State : {marioStore.CurrentState}");
-    }
 }
