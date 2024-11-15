@@ -14,6 +14,7 @@ public class MarioStore
     public State CurrentState { get; private set; }
     public event Action<MarioStore> ScoreChanged = default!;
 
+    public MarioStore() { }
     public MarioStore(int score, State state)
     {
         Score = score;

@@ -7,13 +7,20 @@ class Program
     {
         Console.WriteLine("\n\n------Flux--------\n");
 
-        var marioStore = new Flux_Pattern.Normal_Flux.MarioStore(0, Flux_Pattern.Normal_Flux.State.SMALL);
+        var fluxServices = new ServiceCollection();
+        fluxServices.AddSingleton<Flux_Pattern.Normal_Flux.MarioStore>();
+        fluxServices.AddSingleton<Flux_Pattern.Normal_Flux.Dispatcher>();
+        fluxServices.AddSingleton<Flux_Pattern.Normal_Flux.MarioActionCreator>();
+        IServiceProvider fluxServiceProvider = fluxServices.BuildServiceProvider();
+
+        var marioStore = fluxServiceProvider.GetRequiredService<Flux_Pattern.Normal_Flux.MarioStore>();
         marioStore.ScoreChanged += PrintMarioState_Flux;
-        var flux_dispacher = new Flux_Pattern.Normal_Flux.Dispatcher();
+
+        var flux_dispacher = fluxServiceProvider.GetRequiredService<Flux_Pattern.Normal_Flux.Dispatcher>();
         flux_dispacher.Dispatch += action => action();
 
         PrintMarioState_Flux(marioStore);
-        var actionCreator = new Flux_Pattern.Normal_Flux.MarioActionCreator(flux_dispacher, marioStore);
+        var actionCreator = fluxServiceProvider.GetRequiredService<Flux_Pattern.Normal_Flux.MarioActionCreator>();
         actionCreator.Action(new Flux_Pattern.Normal_Flux.ObtainMushroomAction());
         actionCreator.Action(new Flux_Pattern.Normal_Flux.ObtainCapeAction());
         actionCreator.Action(new Flux_Pattern.Normal_Flux.ObtainFireAction());
