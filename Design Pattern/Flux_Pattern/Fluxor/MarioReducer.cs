@@ -4,7 +4,7 @@ namespace Flux_Pattern.Fluxor;
 
 public class MarioReducer
 {
-    public static readonly int[,] actionTable =
+    private static readonly int[,] _actionTable =
     {
         { +100, +200, +300,   +0 },
         {   +0, +200, +300, -100 },
@@ -12,7 +12,7 @@ public class MarioReducer
         {   +0 ,  +0,    0, -300 }
     };
 
-    public static readonly State[,] transitionTable =
+    private static readonly State[,] _transitionTable =
     {
         {State.SUPER, State.CAPE, State.FIRE, State.SMALL },
         {State.SUPER, State.CAPE, State.FIRE, State.SMALL },
@@ -23,7 +23,7 @@ public class MarioReducer
     [ReducerMethod]
     public MarioState ReduceAction(MarioState state, IMarioAction action) => new
     (
-        score: state.Score + actionTable[(int)state.CurrentState, action.GetTableIndex()], 
-        state: transitionTable[(int)state.CurrentState, action.GetTableIndex()]
+        score: state.Score + _actionTable[(int)state.CurrentState, action.GetTableIndex()], 
+        state: _transitionTable[(int)state.CurrentState, action.GetTableIndex()]
     );
 }

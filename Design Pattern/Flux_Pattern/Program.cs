@@ -6,7 +6,17 @@ class Program
     static async Task Main(string[] args)
     {
         Console.WriteLine("\n\n------Flux--------\n");
-        
+
+        Flux_Pattern.Normal_Flux.MarioStore.Instance.ScoreChanged += PrintMarioState_Flux;
+        var flux_dispacher = new Flux_Pattern.Normal_Flux.Dispatcher();
+        flux_dispacher.Dispatch += action => action();
+        PrintMarioState_Flux(Flux_Pattern.Normal_Flux.MarioStore.Instance);
+        Flux_Pattern.Normal_Flux.MarioActionCreator.Action(new Flux_Pattern.Normal_Flux.ObtainMushroomAction());
+        Flux_Pattern.Normal_Flux.MarioActionCreator.Action(new Flux_Pattern.Normal_Flux.ObtainCapeAction());
+        Flux_Pattern.Normal_Flux.MarioActionCreator.Action(new Flux_Pattern.Normal_Flux.ObtainFireAction());
+        Flux_Pattern.Normal_Flux.MarioActionCreator.Action(new Flux_Pattern.Normal_Flux.MeetMonsterAction());
+
+
         Console.WriteLine("\n\n------Fluxor--------\n");
 
         var services = new ServiceCollection();
@@ -17,19 +27,24 @@ class Program
         var store = serviceProvider.GetRequiredService<IStore>();
         await store.InitializeAsync();
         var marioState = serviceProvider.GetRequiredService<IState<Flux_Pattern.Fluxor.MarioState>>();
-        marioState.StateChanged += PrintMarioState;
+        marioState.StateChanged += PrintMarioState_Fluxor;
 
         var dispatcher = serviceProvider.GetRequiredService<IDispatcher>();
-        PrintMarioState(marioState, null);
+        PrintMarioState_Fluxor(marioState, null);
         dispatcher.Dispatch(new Flux_Pattern.Fluxor.ObtainMushroomAction());
         dispatcher.Dispatch(new Flux_Pattern.Fluxor.ObtainCapeAction());
         dispatcher.Dispatch(new Flux_Pattern.Fluxor.ObtainFireAction());
         dispatcher.Dispatch(new Flux_Pattern.Fluxor.MeetMonsterAction());
     }
 
-    private static void PrintMarioState(object? sender, EventArgs? e)
+    private static void PrintMarioState_Fluxor(object? sender, EventArgs? e)
     {
         var marioSate = sender as IState<Flux_Pattern.Fluxor.MarioState>;
         Console.WriteLine($"Socre : {marioSate!.Value.Score}, State : {marioSate.Value.CurrentState}");
+    }
+
+    private static void PrintMarioState_Flux(Flux_Pattern.Normal_Flux.MarioStore marioStore)
+    {
+        Console.WriteLine($"Socre : {marioStore.Score}, State : {marioStore.CurrentState}");
     }
 }
