@@ -1,5 +1,6 @@
 // cd "ComputerSystemDeepDive/01 Runable C"
-// Compile
+
+// # Compile
 // gcc -o example main.c
 // # Run
 // ./example

@@ -1,5 +1,6 @@
 // cd "ComputerSystemDeepDive/02 precompiler C"
-// Compile
+
+// # PreCompiler
 // gcc -E main.c > out
 
 #include <stdio.h>

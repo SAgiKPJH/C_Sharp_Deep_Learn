@@ -1,5 +1,6 @@
 // cd "ComputerSystemDeepDive/03 assembly code"
-// Compile
+
+// # Assembly
 // gcc -S main.c > main.s
 
 #include <stdio.h>
