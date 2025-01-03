@@ -2,10 +2,11 @@
 
 // # Run 32-bit
 // gcc -m32 -S main.c > main.s
-// gcc -m32 -c simple main.s
-// gcc -m32 -o simple main.o
+// gcc -m32 -c main.s > main.o
+// gcc -m32 -o main main.o
+
 // # Run
-// ./example
+// ./main
 
 #include <stdio.h>
 
