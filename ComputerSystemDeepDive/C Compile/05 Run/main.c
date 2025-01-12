@@ -3,6 +3,7 @@
 // # Run 32-bit
 // gcc -m32 -S main.c > main.s
 // gcc -m32 -c main.s > main.o
+// objdump -d main.o
 // gcc -m32 -o main main.o
 
 // # Run
