@@ -5,3 +5,7 @@ cd pwndbg
 
 # 설치 확인
 gdb
+
+# 설치 정리
+cd ..
+rm -rf ./pwndbg
