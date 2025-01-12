@@ -1,9 +1,7 @@
-// cd "ComputerSystemDeepDive/01 Runable C"
+// cd "ComputerSystemDeepDive/C Compile/02 precompiler C"
 
-// # Compile
-// gcc -o example main.c
-// # Run
-// ./example
+// # PreCompiler
+// gcc -E main.c > out
 
 #include <stdio.h>
 

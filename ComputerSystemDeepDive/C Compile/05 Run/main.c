@@ -1,4 +1,4 @@
-// cd "ComputerSystemDeepDive/05 Run"
+// cd "ComputerSystemDeepDive/C Compile/05 Run"
 
 // # Run 32-bit
 // gcc -m32 -S main.c > main.s

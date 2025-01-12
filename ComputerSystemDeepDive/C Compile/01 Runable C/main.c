@@ -1,7 +1,9 @@
-// cd "ComputerSystemDeepDive/03 assembly code"
+// cd "ComputerSystemDeepDive/C Compile/01 Runable C"
 
-// # Assembly
-// gcc -S main.c > main.s
+// # Compile
+// gcc -o example main.c
+// # Run
+// ./example
 
 #include <stdio.h>
 

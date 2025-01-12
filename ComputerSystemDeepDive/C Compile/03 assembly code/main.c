@@ -1,7 +1,7 @@
-// cd "ComputerSystemDeepDive/02 precompiler C"
+// cd "ComputerSystemDeepDive/C Compile/03 assembly code"
 
-// # PreCompiler
-// gcc -E main.c > out
+// # Assembly
+// gcc -S main.c > main.s
 
 #include <stdio.h>
 

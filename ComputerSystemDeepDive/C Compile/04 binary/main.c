@@ -1,4 +1,4 @@
-// cd "ComputerSystemDeepDive/04 binary"
+// cd "ComputerSystemDeepDive/C Compile/04 binary"
 
 // # Binary File
 // gcc -c main.c
