@@ -1,4 +1,4 @@
-# // cd "ComputerSystemDeepDive/Debugging/GDB"
+// cd "ComputerSystemDeepDive/Debugging/GDB"
 
 // # Make out
 // gcc -g main.c
