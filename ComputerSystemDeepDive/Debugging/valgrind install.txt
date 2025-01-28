@@ -1,0 +1,7 @@
+sudo apt install automake autoconf
+git clone https://sourceware.org/git/valgrind.git
+cd valgrind
+./autogen.sh
+./configure --prefix=$HOME/.local/valgrind
+make
+make install
