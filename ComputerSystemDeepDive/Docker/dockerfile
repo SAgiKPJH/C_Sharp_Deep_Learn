@@ -10,7 +10,8 @@ RUN apt-get update && \
     git \
     wget \
     vim \
-    gcc && \
+    gcc \
+    python && \
     rm -rf /var/lib/apt/lists/*
 
 # Install VSCode
@@ -21,6 +22,17 @@ RUN echo "root:root" | chpasswd
 RUN mkdir -p ~/.config/code-server && \
     echo "password: root" > ~/.config/code-server/config.yaml && \
     sed -i 's|password:.*|password: root|g' ~/.config/code-server/config.yaml
+
+# Install GDB
+RUN git config --global advice.pushUpdateRejected false && \
+    git config --global advice.detachedHead false && \
+    ln -snf /usr/share/zoneinfo/Asia/Seoul /etc/localtime &&\
+    git clone --quiet https://github.com/pwndbg/pwndbg /workspace/pwndbg && \
+    cd /workspace/pwndbg && \
+    git checkout 2023.07.17 && \
+    ./setup.sh && \
+    cd /workspace && rm -rf ./pwndbg
+
 
 EXPOSE 8080
 
