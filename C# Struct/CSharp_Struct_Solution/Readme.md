@@ -1,7 +1,10 @@
 # C# Struct
-- [GenerateViewModel] ¸¸µé±â
+- [GenerateViewModel] ë§Œë“¤ê¸°
   - https://github.com/DevExpress/DevExpress.Mvvm.CodeGenerators
   - [Attribute](https://github.com/SagiK-Repository/C_Sharp_Study/blob/main/%EA%B2%80%EC%83%89%EC%9A%A9%20%ED%8C%8C%EC%9D%BC.md#16-%EB%A6%AC%ED%94%8C%EB%A0%89%EC%85%98%EA%B3%BC-%EC%95%A0%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%8A%B8)
-- ServiceCollection ¸¸µé±â
-- ÁßÀçÀÚ ÆĞÅÏ ¸¸µé±â (_mediatR)
+  - ì›ë¦¬
+	- Attributeë¡œ ë°ì´í„° ì •ì˜
+	- Reflectionìœ¼ë¡œ ì½”ë“œ ìì²´ ìƒì„±
+- ServiceCollection ë§Œë“¤ê¸°
+- ì¤‘ì¬ì íŒ¨í„´ ë§Œë“¤ê¸° (_mediatR)
 - VisualStudio Custom
