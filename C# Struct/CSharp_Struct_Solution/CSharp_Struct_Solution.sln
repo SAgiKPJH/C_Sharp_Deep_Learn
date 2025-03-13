@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "솔루션 항목", "솔루션 항목", "{8C7501B3-ACA8-454B-B47F-CC1863CA64F4}"
+	ProjectSection(SolutionItems) = preProject
+		Readme.md = Readme.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Generate Attribute", "Generate Attribute", "{04E9711E-5456-4C0D-93DA-89A42E957E54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generate_Attribute", "Generate Attribute\Generate_Attribute\Generate_Attribute.csproj", "{1184733A-44AE-41EE-AF38-4989BA6A5898}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Motivate_Generate_Attribute", "Generate Attribute\Motivate_Generate_Attribute\Motivate_Generate_Attribute.csproj", "{F2FAC639-44F2-47CB-8496-33CEBDF65378}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1184733A-44AE-41EE-AF38-4989BA6A5898}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1184733A-44AE-41EE-AF38-4989BA6A5898}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1184733A-44AE-41EE-AF38-4989BA6A5898}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1184733A-44AE-41EE-AF38-4989BA6A5898}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2FAC639-44F2-47CB-8496-33CEBDF65378}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2FAC639-44F2-47CB-8496-33CEBDF65378}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2FAC639-44F2-47CB-8496-33CEBDF65378}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2FAC639-44F2-47CB-8496-33CEBDF65378}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1184733A-44AE-41EE-AF38-4989BA6A5898} = {04E9711E-5456-4C0D-93DA-89A42E957E54}
+		{F2FAC639-44F2-47CB-8496-33CEBDF65378} = {04E9711E-5456-4C0D-93DA-89A42E957E54}
+	EndGlobalSection
+EndGlobal
